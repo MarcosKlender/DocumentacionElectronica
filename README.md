@@ -1,4 +1,9 @@
-# Electronic_Documentation
+[![License](https://img.shields.io/apm/l/vim-mode.svg)](https://opensource.org/licenses/MIT) ![Development](https://img.shields.io/badge/development-done-green.svg)
+# Electronic Documentation
 Web service para el control de documentos electrónicos de una empresa.
 
-# Laravel
+## Requerimientos
+- [Laravel](https://laravel.com)
+
+## Instalación
+- Clonar o descargar el `.zip` del proyecto.
