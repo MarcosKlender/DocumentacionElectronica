@@ -3,7 +3,11 @@
 Web service para el control de documentos electrónicos de una empresa.
 
 ## Requerimientos
-- [Laravel](https://laravel.com)
+- [Laravel 5.5](https://laravel.com)
+- [PHP 7.0 o Superior](http://php.net)
 
-## Instalación
-- Clonar o descargar el `.zip` del proyecto.
+## Instalación (Linux)
+- Abrir el terminal.
+- Clonar el presente proyecto con el comando `git clone (URL)`.
+- Entrar en la carpeta creada recientemente con el comando `cd Electronic_Documentation/`.
+- Instalar todas las dependencias del proyecto con el comando `composer install`.
