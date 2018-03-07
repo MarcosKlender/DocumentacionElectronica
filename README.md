@@ -5,7 +5,8 @@ Web service para el control de documentos electrónicos de una empresa.
 ## Requerimientos
 - [Laravel 5.5](https://laravel.com)
 - [PHP 7.0 o Superior](http://php.net)
-- [PostgreSQL 9.6.6](https://www.postgresql.org)
+- [PostgreSQL 9.6.*](https://www.postgresql.org)
+- [pgAdmin 4](https://www.pgadmin.org)
 
 ## Instalación (Linux)
 - Abrir el terminal.
