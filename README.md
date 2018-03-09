@@ -8,8 +8,20 @@ Web service para el control de documentos electrónicos de una empresa.
 - [PostgreSQL 9.6.*](https://www.postgresql.org)
 - [pgAdmin 4](https://www.pgadmin.org)
 
+## Dependencias
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+
 ## Instalación (Linux)
 - Abrir el terminal.
 - Clonar el presente proyecto con el comando `git clone (URL)`.
 - Entrar en la carpeta creada recientemente con el comando `cd Electronic_Documentation/`.
 - Instalar todas las dependencias del proyecto con el comando `composer install`.
+- Migrar las tablas necesarias a la base de datos con el comando `php artisan migrate`.
+- Ejecutar el servidor de Laravel con el comando `php artisan serve`.
+- Ingresar al link que proporciona Laravel para acceder a la web service.
