@@ -36,6 +36,9 @@
                 <a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Mis Documentos</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{{ route('ruta.busqueda') }}">Búsqueda</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route('ruta.usuario') }}">Mi Perfil</a>
               </li>
               <li class="nav-item">

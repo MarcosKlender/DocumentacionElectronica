@@ -15,7 +15,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        //
+        return view('search.opciones');
     }
 
     /**
@@ -84,15 +84,39 @@ class SearchController extends Controller
         //
     }
 
-    public function search()
+    public function ruc()
+    {
+        $w = Input::get('w');
+        if($w != '')
+        {
+            $emproservis = Emproservis::take(5)->where('ruc_cliente_proveedor', 'LIKE', '%'.$w.'%')->get();
+            if(count($emproservis) > 0)
+                return view('search.ruc')->withDetails($emproservis)->withQuery($w);
+        }
+        return view('search.ruc')->withMessage('No se ha encontrado ningún documento.');
+    }
+
+    public function numero()
     {
         $q = Input::get('q');
         if($q != '')
         {
             $emproservis = Emproservis::take(5)->where('numero_documento', 'LIKE', '%'.$q.'%')->get();
             if(count($emproservis) > 0)
-                return view('documents.search')->withDetails($emproservis)->withQuery($q);
+                return view('search.numero')->withDetails($emproservis)->withQuery($q);
         }
-        return view('documents.search')->withMessage('No se ha encontrado ningún documento.');
+        return view('search.numero')->withMessage('No se ha encontrado ningún documento.');
+    }
+
+    public function fecha()
+    {
+        $e = Input::get('e');
+        if($e != '')
+        {
+            $emproservis = Emproservis::take(5)->where('fecha_emision_documento', 'LIKE', '%'.$e.'%')->get();
+            if(count($emproservis) > 0)
+                return view('search.fecha')->withDetails($emproservis)->withQuery($e);
+        }
+        return view('search.fecha')->withMessage('No se ha encontrado ningún documento.');
     }
 }

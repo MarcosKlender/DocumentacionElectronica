@@ -6,18 +6,6 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
-<div class="container">
-  <form action="/home/factura/search" method="POST" role="search">
-    {{ csrf_field() }}
-    <div class="input-group">
-      <input type="text" class="form-control" name="q" placeholder="Ingrese el número de factura">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary">Búsqueda</button>
-      </span>
-    </div>
-  </form>
-</div>
-
 <div class="container mt-4">
   <ul class="nav nav-tabs">
     <li class="nav-item">
