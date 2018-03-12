@@ -113,7 +113,7 @@ class SearchController extends Controller
         $e = Input::get('e');
         if($e != '')
         {
-            $emproservis = Emproservis::take(5)->where('fecha_emision_documento', 'LIKE', '%'.$e.'%')->get();
+            $emproservis = Emproservis::take(5)->whereDate('fecha_emision_documento', '=', $e)->get();
             if(count($emproservis) > 0)
                 return view('search.fecha')->withDetails($emproservis)->withQuery($e);
         }
