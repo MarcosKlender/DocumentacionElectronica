@@ -39,7 +39,7 @@
 @if(isset($details))
 
 <div class="container mt-4">
-  <p>Los resultados para la búsqueda del documento <b>{{ $query }}</b> son:</p>
+  <p>Los resultados para los documentos de la fecha <b>{{ $query }}</b> son:</p>
 
   <table class="table table-hover table-responsive">
     <thead>

@@ -2,7 +2,9 @@
 
 namespace WebServiceApp\Http\Controllers;
 
+use WebServiceApp\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use WebServiceApp\Models\Emproservis;
 
 class UserController extends Controller
@@ -24,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        return view('users.mostrar');
     }
 
     /**
@@ -65,9 +67,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('users.editar');
+    }
+
+    public function cambiar()
+    {
+        return view('users.cambiar');
     }
 
     /**
@@ -77,7 +84,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
         //
     }

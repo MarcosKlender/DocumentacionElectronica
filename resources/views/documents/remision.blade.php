@@ -22,13 +22,13 @@
     <thead>
       <tr>
         <th scope="col">Tipo</th>
-        <th scope="col">Número de Factura</th>
+        <th scope="col">Número</th>
         <th scope="col">Fecha de Emisión</th>
-        {{-- <th scope="col">Valor</th> --}}
+        <!-- <th scope="col">Valor</th> -->
         <th scope="col">Cliente</th>
-        {{-- <th scope="col">RUC/CI</th> --}}
+        <!-- <th scope="col">RUC/CI</th> -->
         <th scope="col">Estado</th>
-        <th scope="col">Fecha y Hora de Autorización</th>
+        <th scope="col">Fecha de Autorización</th>
         <th scope="col">PDF</th>
       </tr>
     </thead>

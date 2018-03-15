@@ -41,9 +41,17 @@ Route::get('/home/search/fecha', 'SearchController@fecha')
 	Route::post('/home/search/fecha', 'SearchController@fecha');
 
 //-------------------------------------------------------------------------
-Route::get('/usuario', 'UserController@index')
+Route::get('home/usuario', 'UserController@index')
 	->name('ruta.usuario');
 Auth::routes();
 
+Route::get('home/usuario/editar', 'UserController@edit')
+	->name('ruta.usuario.editar');
+
+Route::put('home/usuario', 'UserController@update');
+
+Route::get('home/usuario/cambiar', 'UserController@cambiar')
+	->name('ruta.usuario.cambiar');
+//-------------------------------------------------------------------------
 Route::get('/home/descargar', 'DocumentsController@pdf')
 	->name('ruta.documentos.pdf');
