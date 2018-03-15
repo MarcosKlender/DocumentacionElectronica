@@ -4,6 +4,7 @@ namespace WebServiceApp\Http\Controllers;
 
 use Illuminate\Http\Request;
 use WebServiceApp\Models\Emproservis;
+use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class DocumentsController extends Controller
@@ -97,17 +98,22 @@ class DocumentsController extends Controller
 
     public function factura()
     {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
         $factura = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'FACTURA'],
-                ['fecha_emision_documento', '>=', '2017-01-01'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         $debito = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'NOTA DE DEBITO'],
-                ['fecha_emision_documento', '>=', '2017-01-01'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         $credito = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'NOTA DE CREDITO'],
-                ['fecha_emision_documento', '>=', '2017-01-01'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
 
         return view('documents.factura', compact('factura', 'debito', 'credito'));
@@ -115,9 +121,12 @@ class DocumentsController extends Controller
 
     public function retencion()
     {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
         $retencion = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'RETENCION'],
-                ['fecha_emision_documento', '>=', '2017-01-01'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
 
         return view('documents.retencion', compact('retencion'));
@@ -125,9 +134,12 @@ class DocumentsController extends Controller
 
     public function remision()
     {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
         $remision = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'GUIA DE REMISION'],
-                ['fecha_emision_documento', '>=', '2017-01-01'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         
         return view('documents.remision', compact('remision'));
