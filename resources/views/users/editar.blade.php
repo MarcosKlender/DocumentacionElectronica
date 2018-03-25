@@ -21,15 +21,19 @@
 
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" placeholder="{{ Auth::user()->name }}">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="{{ Auth::user()->name }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="{{ Auth::user()->email }}">
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="{{ Auth::user()->email }}">
                 </div>
                 <div class="form-group">
                     <label for="ruc_o_ci">RUC o CI</label>
-                    <input type="text" class="form-control" id="ruc_o_ci" placeholder="{{ Auth::user()->ruc_o_ci }}">
+                    <input type="text" class="form-control" name="ruc_o_ci" id="ruc_o_ci" placeholder="{{ Auth::user()->ruc_o_ci }}">
+                </div>
+                <div class="form-group">
+                    <label for="ruc_o_ci">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 6 caracteres">
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Actualizar información</button>

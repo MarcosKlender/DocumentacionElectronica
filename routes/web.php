@@ -14,7 +14,10 @@
 Route::get('/', 'HomeController@index')
 	->name('ruta.login.index');
 
-//-------------------------------------------------------------------------
+//|--------------------------------------------------------------------------
+//| DOCUMENTOS
+//|--------------------------------------------------------------------------
+
 Route::get('/home/factura', 'DocumentsController@factura')
 	->name('ruta.documentos.factura');
 
@@ -24,7 +27,10 @@ Route::get('/home/retencion', 'DocumentsController@retencion')
 Route::get('/home/remision', 'DocumentsController@remision')
 	->name('ruta.documentos.remision');
 
-//-------------------------------------------------------------------------
+//|--------------------------------------------------------------------------
+//| BÚSQUEDA
+//|--------------------------------------------------------------------------
+
 Route::get('/home/search', 'SearchController@index')
 	->name('ruta.busqueda');
 
@@ -40,18 +46,23 @@ Route::get('/home/search/fecha', 'SearchController@fecha')
 	->name('ruta.busqueda.fecha');
 	Route::post('/home/search/fecha', 'SearchController@fecha');
 
-//-------------------------------------------------------------------------
+//|--------------------------------------------------------------------------
+//| USUARIOS
+//|--------------------------------------------------------------------------
+
 Route::get('home/usuario', 'UserController@index')
 	->name('ruta.usuario');
+	
 Auth::routes();
 
-Route::get('home/usuario/editar', 'UserController@edit')
+Route::get('home/usuario/editar', 'UserController@update')
 	->name('ruta.usuario.editar');
 
-Route::put('home/usuario', 'UserController@update');
+Route::put('home/usuario', 'UserController@editar');
 
 Route::get('home/usuario/cambiar', 'UserController@cambiar')
 	->name('ruta.usuario.cambiar');
+
 //-------------------------------------------------------------------------
 Route::get('/home/descargar', 'DocumentsController@pdf')
 	->name('ruta.documentos.pdf');
