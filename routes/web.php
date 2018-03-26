@@ -55,13 +55,17 @@ Route::get('home/usuario', 'UserController@index')
 	
 Auth::routes();
 
-Route::get('home/usuario/editar', 'UserController@update')
+Route::get('home/usuario/editar', 'UserController@update_one')
 	->name('ruta.usuario.editar');
 
-Route::put('home/usuario', 'UserController@editar');
+Route::put('home/usuario/editar', 'UserController@editar')
+	->name('editar.usuario');
 
-Route::get('home/usuario/cambiar', 'UserController@cambiar')
+Route::get('home/usuario/cambiar', 'UserController@update_two')
 	->name('ruta.usuario.cambiar');
+
+Route::put('home/usuario/cambiar', 'UserController@cambiar')
+	->name('cambiar.usuario');
 
 //-------------------------------------------------------------------------
 Route::get('/home/descargar', 'DocumentsController@pdf')

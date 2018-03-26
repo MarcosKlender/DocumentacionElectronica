@@ -71,29 +71,42 @@ class UserController extends Controller
     public function editar(User $user)
     {
         $data = request()->validate([
-            'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
-            'ruc_o_ci' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'ruc_o_ci' => ['required', 'digits_between:10,13', Rule::unique('users')->ignore($user->id)],
             'password' => ''
+        ]);
+
+        if ($data['password'] != null){unset($data['password']);}else{unset($data['password']);}
+        Auth::user()->update($data);
+        return redirect()->route('ruta.usuario');
+    }
+
+    public function cambiar()
+    {
+        $data = request()->validate([
+            'name' => '',
+            'email' => '',
+            'ruc_o_ci' => '',
+            'password' => 'required|string|min:6|confirmed'
         ]);
 
         if ($data['password'] != null)
         {
             $data['password'] = bcrypt($data['password']);
         }
+
+        if ($data['name'] != null && $data['email'] != null && $data['ruc_o_ci'] != null)
+        {
+            unset($data['name'], $data['email'], $data['ruc_o_ci']);
+        }
         else
         {
-            unset($data['password']);
+            unset($data['name'], $data['email'], $data['ruc_o_ci']);
         }
 
         Auth::user()->update($data);
-
         return redirect()->route('ruta.usuario');
-    }
-
-    public function cambiar()
-    {
-        return view('users.cambiar');
     }
 
     /**
@@ -103,9 +116,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update_one()
     {
         return view('users.editar');
+    }
+
+    public function update_two()
+    {
+        return view('users.cambiar');
     }
 
     /**

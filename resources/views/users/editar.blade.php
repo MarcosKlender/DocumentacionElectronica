@@ -5,6 +5,8 @@
   <h2>Perfil de Usuario</h2>
 </div>
 
+
+
 @guest
     <li><a href="{{ route('login') }}">Inicio de Sesión</a></li>
     <li><a href="{{ route('register') }}">Registro</a></li>
@@ -14,26 +16,34 @@
           <h4 class="card-header">Actualización de Información</h4>
           <div class="card-body">
 
-            <form method="POST" action="{{ url('home/usuario') }}">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <h6>Por favor, corrija los siguientes errores:</h6>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form method="POST" action="{{ route('editar.usuario') }}">
                 
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
 
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="{{ Auth::user()->name }}">
+                    <input type="text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="{{ Auth::user()->email }}">
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="{{ Auth::user()->email }}">
                 </div>
                 <div class="form-group">
                     <label for="ruc_o_ci">RUC o CI</label>
-                    <input type="text" class="form-control" name="ruc_o_ci" id="ruc_o_ci" placeholder="{{ Auth::user()->ruc_o_ci }}">
-                </div>
-                <div class="form-group">
-                    <label for="ruc_o_ci">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Mayor a 6 caracteres">
+                    <input type="text" class="form-control" name="ruc_o_ci" id="ruc_o_ci" value="{{ Auth::user()->ruc_o_ci }}">
+                    <input type="hidden" class="form-control" name="password" id="password">
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Actualizar información</button>
