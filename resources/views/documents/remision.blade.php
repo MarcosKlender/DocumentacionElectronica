@@ -18,6 +18,14 @@
     </li>
   </ul>
 
+  @if (count($remision) === 0)
+  <div class="card">
+    <div class="card-body">
+      No se han encontrado documentos actualmente.
+    </div>
+  </div>
+  @else
+
   <table class="table table-hover table-responsive">
     <thead>
       <tr>
@@ -52,6 +60,6 @@
       @endforeach
     </tbody>
   </table>
-
+  @endif
 </div>
 @endsection

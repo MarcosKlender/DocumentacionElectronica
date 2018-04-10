@@ -18,6 +18,14 @@
       <a class="nav-link" href="{{ route('ruta.documentos.remision') }}">Guías de Remisión</a>
     </li>
   </ul>
+      
+  @if (count($factura) === 0)
+  <div class="card">
+    <div class="card-body">
+      No se han encontrado documentos actualmente.
+    </div>
+  </div>
+  @else
 
   <table class="table table-hover table-responsive">
     <thead>
@@ -34,6 +42,7 @@
       </tr>
     </thead>
     <tbody>
+
       @foreach($factura as $value)
       <tr>
         <td>{{ $value->id_documento }}</td>
@@ -89,5 +98,6 @@
       @endforeach
     </tbody>
   </table>
+  @endif
 </div>
 @endsection

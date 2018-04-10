@@ -30,7 +30,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Bienvenido/a, {{ Auth::user()->name }}</a>
+                <a class="nav-link active">Bienvenido/a, {{ Auth::user()->name }}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Mis Documentos</a>

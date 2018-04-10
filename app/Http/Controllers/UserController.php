@@ -77,9 +77,17 @@ class UserController extends Controller
             'password' => ''
         ]);
 
-        if ($data['password'] != null){unset($data['password']);}else{unset($data['password']);}
+        if ($data['password'] != null)
+        {
+            unset($data['password']);
+        }
+        else
+        {
+            unset($data['password']);
+        }
+
         Auth::user()->update($data);
-        return redirect()->route('ruta.usuario');
+        return redirect()->route('ruta.usuario')->with('success','¡Su información se ha editado exitosamente!');
     }
 
     public function cambiar()
@@ -106,7 +114,7 @@ class UserController extends Controller
         }
 
         Auth::user()->update($data);
-        return redirect()->route('ruta.usuario');
+        return redirect()->route('ruta.usuario')->with('success','¡Su contraseña se ha cambiado exitosamente!');
     }
 
     /**

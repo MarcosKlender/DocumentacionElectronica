@@ -91,9 +91,15 @@ class SearchController extends Controller
         {
             $emproservis = Emproservis::take(5)->where('ruc_cliente_proveedor', 'LIKE', '%'.$w.'%')->get();
             if(count($emproservis) > 0)
+            {
                 return view('search.ruc')->withDetails($emproservis)->withQuery($w);
+            }
+            elseif(count($emproservis) === 0)
+            {
+                return view('search.ruc')->withMessage('No se ha encontrado ningún documento.');
+            }
         }
-        return view('search.ruc')->withMessage('No se ha encontrado ningún documento.');
+        return view('search.ruc');
     }
 
     public function numero()
@@ -103,9 +109,15 @@ class SearchController extends Controller
         {
             $emproservis = Emproservis::take(5)->where('numero_documento', 'LIKE', '%'.$q.'%')->get();
             if(count($emproservis) > 0)
+            {
                 return view('search.numero')->withDetails($emproservis)->withQuery($q);
+            }
+            elseif(count($emproservis) === 0)
+            {
+                return view('search.numero')->withMessage('No se ha encontrado ningún documento.');
+            }
         }
-        return view('search.numero')->withMessage('No se ha encontrado ningún documento.');
+        return view('search.numero');
     }
 
     public function fecha()
@@ -115,8 +127,14 @@ class SearchController extends Controller
         {
             $emproservis = Emproservis::take(5)->whereDate('fecha_emision_documento', '=', $e)->get();
             if(count($emproservis) > 0)
+            {
                 return view('search.fecha')->withDetails($emproservis)->withQuery($e);
+            }
+            elseif(count($emproservis) === 0)
+            {
+                return view('search.fecha')->withMessage('No se ha encontrado ningún documento.');
+            }
         }
-        return view('search.fecha')->withMessage('No se ha encontrado ningún documento.');
+        return view('search.fecha');
     }
 }

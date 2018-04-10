@@ -5,8 +5,6 @@
   <h2>Perfil de Usuario</h2>
 </div>
 
-
-
 @guest
     <li><a href="{{ route('login') }}">Inicio de Sesión</a></li>
     <li><a href="{{ route('register') }}">Registro</a></li>
