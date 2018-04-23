@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use WebServiceApp\Models\Emproservis;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade as PDF;
+use DB;
 
 class DocumentsController extends Controller
 {
