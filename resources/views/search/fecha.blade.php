@@ -28,7 +28,8 @@
   <form action="{{ route('ruta.busqueda.fecha') }}" method="POST" role="search">
     {{ csrf_field() }}
     <div class="input-group">
-      <input type="date" class="form-control" name="e" placeholder="Ingrese la fecha (año-mes-día)">
+      <input type="date" class="form-control" name="e1" placeholder="Desde">
+      <input type="date" class="form-control" name="e2" placeholder="Hasta">
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary">Búsqueda</button>
       </span>
@@ -39,7 +40,7 @@
 @if(isset($details))
 
 <div class="container mt-4">
-  <p>Los resultados para los documentos de la fecha <b>{{ $query }}</b> son:</p>
+  <p>Los resultados para los documentos de la fecha <b>{{ $desde }}</b> y  <b>{{ $hasta }}</b> son:</p>
 
   <table class="table table-hover table-responsive">
     <thead>

@@ -5,6 +5,7 @@ namespace WebServiceApp\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use WebServiceApp\Models\Emproservis;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -84,6 +85,7 @@ class SearchController extends Controller
         //
     }
 
+    //BÙSQUEDA POR RUC SOLAMENTE PARA EL SUPERUSUARIO
     public function ruc()
     {
         $w = Input::get('w');
@@ -107,7 +109,13 @@ class SearchController extends Controller
         $q = Input::get('q');
         if($q != '')
         {
-            $emproservis = Emproservis::take(5)->where('numero_documento', 'LIKE', '%'.$q.'%')->get();
+            $ruc_usuario = Auth::user()->ruc_o_ci;
+
+            $emproservis = Emproservis::take(5)->where([
+                ['numero_documento', 'LIKE', '%'.$q.'%'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+            ])->get();
+            
             if(count($emproservis) > 0)
             {
                 return view('search.numero')->withDetails($emproservis)->withQuery($q);
@@ -122,13 +130,18 @@ class SearchController extends Controller
 
     public function fecha()
     {
-        $e = Input::get('e');
-        if($e != '')
+        $e1 = Input::get('e1');
+        $e2 = Input::get('e2');
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
+        if($e1 != '' and $e2 != '')
         {
-            $emproservis = Emproservis::take(5)->whereDate('fecha_emision_documento', '=', $e)->get();
+            $emproservis = Emproservis::take(5)->whereBetween('fecha_emision_documento', [$e1, $e2])
+            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->get();
             if(count($emproservis) > 0)
             {
-                return view('search.fecha')->withDetails($emproservis)->withQuery($e);
+                $fechas = ['desde' => $e1, 'hasta' => $e2];
+                return view('search.fecha')->withDetails($emproservis)->with($fechas);
             }
             elseif(count($emproservis) === 0)
             {
