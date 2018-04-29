@@ -3,27 +3,19 @@
 @section('tabla')
 
 <div class="container text-center my-4">
-  <h2>Búsqueda de Documentos</h2>
+  <h2>Documentos Electrónicos</h2>
 </div>
 
-<div class="container">
-  <div class="row justify-content-between">
-    <div class="ml-sl-2">    
-    Elija la opción de búsqueda:
-    </div>
-  <div class="mr-sm-2">
-    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Opciones</a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+<div class="container text-center my-4">
+  <a class="btn btn-primary" href="{{ route('ruta.documentos.factura') }}" role="button">Regresar</a>
+  <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <!-- <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a> -->
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
-      </div>
-    </div>
+    <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
+    <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
+    <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
   </div>
 </div>
-
-<br>
 
 <div class="container">
   <form action="{{ route('ruta.busqueda.ruc') }}" method="POST" role="search">
@@ -37,6 +29,7 @@
   </form>
 </div>
 
+<!-- INICIO DE LA BÚSQUEDA POR RUC/CI -->
 @if(isset($details))
 
 <div class="container mt-4">
@@ -82,3 +75,4 @@
 </div>
 
 @endsection
+<!-- FIN DE LA BÚSQUEDA POR RUC/CI -->

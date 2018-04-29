@@ -1,3 +1,4 @@
+<!-- BORRAR - ESTO POSIBLEMENTE YA NO SE UTILICE -->
 @extends('master')
 
 @section('tabla')

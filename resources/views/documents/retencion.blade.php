@@ -1,10 +1,22 @@
 @extends('master')
 
 @section('tabla')
-<div class="container text-center mt-4">
+
+<div class="container text-center my-4">
   <h2>Documentos Electrónicos</h2>
 </div>
 
+<div class="container text-center my-4">
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <!-- <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a> -->
+        <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
+        <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
+        <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
+      </div>
+</div>
+
+<!-- INICIO DE LA VISUALIZACIÓN DE DOCUMENTOS -->
 <div class="container mt-4">
   <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -61,3 +73,4 @@
   @endif
 </div>
 @endsection
+<!-- FIN DE LA VISUALIZACIÓN DE DOCUMENTOS -->

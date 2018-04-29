@@ -104,17 +104,14 @@ class DocumentsController extends Controller
         $factura = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'FACTURA'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         $debito = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'NOTA DE DEBITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         $credito = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'NOTA DE CREDITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
 
         return view('documents.factura', compact('factura', 'debito', 'credito'));
@@ -127,7 +124,6 @@ class DocumentsController extends Controller
         $retencion = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'RETENCION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
 
         return view('documents.retencion', compact('retencion'));
@@ -140,7 +136,6 @@ class DocumentsController extends Controller
         $remision = Emproservis::take(5)->Where([
                 ['id_documento', '=', 'GUIA DE REMISION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-                //['fecha_emision_documento', '>=', '2017-01-01'],
             ])->get();
         
         return view('documents.remision', compact('remision'));
