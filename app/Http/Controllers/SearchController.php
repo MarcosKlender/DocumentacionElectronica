@@ -85,7 +85,7 @@ class SearchController extends Controller
         //
     }
 
-    //BÙSQUEDA POR RUC SOLAMENTE PARA EL SUPERUSUARIO
+    //BÚSQUEDA POR RUC SOLAMENTE PARA EL SUPERUSUARIO
     public function ruc()
     {
         $w = Input::get('w');
@@ -126,6 +126,30 @@ class SearchController extends Controller
             }
         }
         return view('search.numero');
+    }
+
+    public function valor()
+    {
+        $x = Input::get('x');
+        if($x != '')
+        {
+            $ruc_usuario = Auth::user()->ruc_o_ci;
+
+            $emproservis = Emproservis::take(5)->where([
+                ['valor_total', 'LIKE', '%'.$x.'%'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+            ])->get();
+            
+            if(count($emproservis) > 0)
+            {
+                return view('search.valor')->withDetails($emproservis)->withQuery($x);
+            }
+            elseif(count($emproservis) === 0)
+            {
+                return view('search.valor')->withMessage('No se ha encontrado ningún documento.');
+            }
+        }
+        return view('search.valor');
     }
 
     public function fecha()

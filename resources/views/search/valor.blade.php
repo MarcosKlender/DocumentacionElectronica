@@ -26,10 +26,10 @@
 <br>
 
 <div class="container">
-  <form action="{{ route('ruta.busqueda.ruc') }}" method="POST" role="search">
+  <form action="{{ route('ruta.busqueda.valor') }}" method="POST" role="search">
     {{ csrf_field() }}
     <div class="input-group">
-      <input type="text" class="form-control" name="w" placeholder="Ingrese el número de RUC o CI">
+      <input type="text" class="form-control" name="x" placeholder="Ingrese el valor del documento">
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary">Búsqueda</button>
       </span>
@@ -40,7 +40,7 @@
 @if(isset($details))
 
 <div class="container mt-4">
-  <p>Los resultados para la búsqueda de los documentos pertenecientes al RUC <b>{{ $query }}</b> son:</p>
+  <p>Los resultados para la búsqueda del documento con un valor de <b>{{ $query }}</b> son:</p>
 
   <table class="table table-hover table-responsive">
     <thead>

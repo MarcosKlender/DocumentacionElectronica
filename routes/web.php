@@ -42,6 +42,10 @@ Route::get('/home/search/numero', 'SearchController@numero')
 	->name('ruta.busqueda.numero');
 	Route::post('/home/search/numero', 'SearchController@numero');	
 
+Route::get('/home/search/valor', 'SearchController@valor')
+	->name('ruta.busqueda.valor');
+	Route::post('/home/search/valor', 'SearchController@valor');	
+
 Route::get('/home/search/fecha', 'SearchController@fecha')
 	->name('ruta.busqueda.fecha');
 	Route::post('/home/search/fecha', 'SearchController@fecha');
