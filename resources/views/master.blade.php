@@ -29,6 +29,15 @@
           @else
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              
+              <!-- ¿ERES ROOT? -->
+              @if(Auth::user()->admin == 1)
+              <li class="nav-item">
+                <a class="nav-link active">Root</a>
+              </li>
+              @endif
+              <!-- FIN -->
+
               <li class="nav-item">
                 <a class="nav-link active">Bienvenido/a, {{ Auth::user()->name }}</a>
               </li>
