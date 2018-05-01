@@ -91,7 +91,8 @@ class SearchController extends Controller
         $w = Input::get('w');
         if($w != '')
         {
-            $emproservis = Emproservis::take(5)->where('ruc_cliente_proveedor', 'LIKE', '%'.$w.'%')->get();
+            $emproservis = Emproservis::where('ruc_cliente_proveedor', '=', $w)
+            ->orderBy('fecha_emision_documento', 'asc')->get();
             if(count($emproservis) > 0)
             {
                 return view('search.ruc')->withDetails($emproservis)->withQuery($w);
@@ -111,10 +112,10 @@ class SearchController extends Controller
         {
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
-            $emproservis = Emproservis::take(5)->where([
-                ['numero_documento', 'LIKE', '%'.$q.'%'],
+            $emproservis = Emproservis::where([
+                ['numero_documento', 'LIKE', $q.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
             
             if(count($emproservis) > 0)
             {
@@ -135,10 +136,10 @@ class SearchController extends Controller
         {
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
-            $emproservis = Emproservis::take(5)->where([
-                ['valor_total', 'LIKE', '%'.$x.'%'],
+            $emproservis = Emproservis::where([
+                ['valor_total', 'LIKE', $x.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
+            ])->orderBy('valor_total', 'asc')->get();
             
             if(count($emproservis) > 0)
             {
@@ -160,8 +161,8 @@ class SearchController extends Controller
 
         if($e1 != '' and $e2 != '')
         {
-            $emproservis = Emproservis::take(5)->whereBetween('fecha_emision_documento', [$e1, $e2])
-            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->get();
+            $emproservis = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
+            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'asc')->get();
             if(count($emproservis) > 0)
             {
                 $fechas = ['desde' => $e1, 'hasta' => $e2];

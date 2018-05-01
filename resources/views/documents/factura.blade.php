@@ -67,7 +67,7 @@
         <td>{{ $value->valor_total }}</td>
         <td>{{ $value->fecha_emision_documento }}</td>
         <td>{{ $value->fecha_autorizacion }}</td>
-        <td><a href="#" target="_blank"><i class="far fa-file-code"></i></td>
+        <td><a href="{{ route('ruta.documentos.xml') }}" target="_blank"><i class="far fa-file-code"></i></td>
         <td><a href="{{ route('ruta.documentos.pdf') }}" target="_blank"><i class="far fa-file-pdf"></i></a></td>
       </tr>
       @endforeach

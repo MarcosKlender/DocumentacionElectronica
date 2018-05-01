@@ -101,18 +101,18 @@ class DocumentsController extends Controller
     {
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $factura = Emproservis::take(5)->Where([
+        $factura = Emproservis::where([
                 ['id_documento', '=', 'FACTURA'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
-        $debito = Emproservis::take(5)->Where([
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
+        $debito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE DEBITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
-        $credito = Emproservis::take(5)->Where([
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
+        $credito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE CREDITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
 
         return view('documents.factura', compact('factura', 'debito', 'credito'));
     }
@@ -121,10 +121,10 @@ class DocumentsController extends Controller
     {
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $retencion = Emproservis::take(5)->Where([
+        $retencion = Emproservis::where([
                 ['id_documento', '=', 'RETENCION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
 
         return view('documents.retencion', compact('retencion'));
     }
@@ -133,12 +133,23 @@ class DocumentsController extends Controller
     {
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $remision = Emproservis::take(5)->Where([
+        $remision = Emproservis::where([
                 ['id_documento', '=', 'GUIA DE REMISION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
         
         return view('documents.remision', compact('remision'));
+    }
+
+    public function xml()
+    {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
+        $xml = Emproservis::where([
+                ['id_documento', '=', 'FACTURA'],
+                ['ruc_cliente_proveedor', '=', $ruc_usuario],
+            ])->orderBy('fecha_emision_documento', 'asc')->get();
+        return view('documento', compact('xml'));
     }
 
     public function pdf()
