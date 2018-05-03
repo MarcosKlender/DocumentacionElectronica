@@ -5,6 +5,7 @@
 </head>
 <body>
 	@foreach($xml as $value)
+	{{ $value-> numero_documento }}
 	{{ $value->xml_documento }}
     @endforeach
 </body>
