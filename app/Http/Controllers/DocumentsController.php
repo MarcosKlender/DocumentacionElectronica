@@ -104,15 +104,15 @@ class DocumentsController extends Controller
         $factura = Emproservis::where([
                 ['id_documento', '=', 'FACTURA'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
         $debito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE DEBITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
         $credito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE CREDITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
 
         return view('documents.factura', compact('factura', 'debito', 'credito'));
     }
@@ -124,7 +124,7 @@ class DocumentsController extends Controller
         $retencion = Emproservis::where([
                 ['id_documento', '=', 'RETENCION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
 
         return view('documents.retencion', compact('retencion'));
     }
@@ -136,7 +136,7 @@ class DocumentsController extends Controller
         $remision = Emproservis::where([
                 ['id_documento', '=', 'GUIA DE REMISION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
         
         return view('documents.remision', compact('remision'));
     }

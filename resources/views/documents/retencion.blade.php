@@ -72,6 +72,11 @@
       @endforeach
     </tbody>
   </table>
+
+  <div class="pagination justify-content-center">
+    {{ $retencion->links('vendor.pagination.bootstrap-4') }}
+  </div>
+  
   @endif
 </div>
 @endsection

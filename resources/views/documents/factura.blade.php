@@ -40,7 +40,7 @@
   </div>
   @else
 
-  <table class="table table-hover table-responsive">
+  <table class="table table-hover table-responsive" id="tabla_documentos">
     <thead>
       <tr>
         <th scope="col">Tipo</th>
@@ -67,10 +67,25 @@
         <td>{{ $value->valor_total }}</td>
         <td>{{ $value->fecha_emision_documento }}</td>
         <td>{{ $value->fecha_autorizacion }}</td>
+        <!-- <td>{{ $value->xml_documento }}</td> -->
         <td><a href="{{ route('ruta.documentos.xml') }}" target="_blank"><i class="far fa-file-code"></i></td>
         <td><a href="{{ route('ruta.documentos.pdf') }}" target="_blank"><i class="far fa-file-pdf"></i></a></td>
       </tr>
       @endforeach
+
+      <!-- <script type="text/javascript">
+        var tbl = document.getElementById("tabla_documentos");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+                for (var j = 0; j < tbl.rows[i].cells.length; j++)
+                    tbl.rows[i].cells[j].onclick = function () { getval(this); };
+            }
+        }
+ 
+        function getval(cel) {
+            alert(cel.innerHTML);
+        }
+      </script> -->
 
       @foreach($debito as $value)
       <tr>
@@ -103,6 +118,11 @@
       @endforeach
     </tbody>
   </table>
+
+  <div class="pagination justify-content-center">
+    {{ $factura->links('vendor.pagination.bootstrap-4') }}
+  </div>
+
   @endif
 </div>
 @endsection

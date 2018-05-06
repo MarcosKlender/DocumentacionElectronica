@@ -91,13 +91,13 @@ class SearchController extends Controller
         $w = Input::get('w');
         if($w != '')
         {
-            $emproservis = Emproservis::where('ruc_cliente_proveedor', '=', $w)
+            $busqueda_ruc = Emproservis::where('ruc_cliente_proveedor', '=', $w)
             ->orderBy('fecha_emision_documento', 'asc')->get();
-            if(count($emproservis) > 0)
+            if(count($busqueda_ruc) > 0)
             {
-                return view('search.ruc')->withDetails($emproservis)->withQuery($w);
+                return view('search.ruc')->withDetails($busqueda_ruc)->withQuery($w);
             }
-            elseif(count($emproservis) === 0)
+            elseif(count($busqueda_ruc) === 0)
             {
                 return view('search.ruc')->withMessage('No se ha encontrado ningún documento.');
             }
@@ -112,16 +112,16 @@ class SearchController extends Controller
         {
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
-            $emproservis = Emproservis::where([
+            $busqueda_numero = Emproservis::where([
                 ['numero_documento', 'LIKE', $q.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
             ])->orderBy('fecha_emision_documento', 'asc')->get();
             
-            if(count($emproservis) > 0)
+            if(count($busqueda_numero) > 0)
             {
-                return view('search.numero')->withDetails($emproservis)->withQuery($q);
+                return view('search.numero')->withDetails($busqueda_numero)->withQuery($q);
             }
-            elseif(count($emproservis) === 0)
+            elseif(count($busqueda_numero) === 0)
             {
                 return view('search.numero')->withMessage('No se ha encontrado ningún documento.');
             }
@@ -136,16 +136,16 @@ class SearchController extends Controller
         {
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
-            $emproservis = Emproservis::where([
+            $busqueda_valor = Emproservis::where([
                 ['valor_total', 'LIKE', $x.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
             ])->orderBy('valor_total', 'asc')->get();
             
-            if(count($emproservis) > 0)
+            if(count($busqueda_valor) > 0)
             {
-                return view('search.valor')->withDetails($emproservis)->withQuery($x);
+                return view('search.valor')->withDetails($busqueda_valor)->withQuery($x);
             }
-            elseif(count($emproservis) === 0)
+            elseif(count($busqueda_valor) === 0)
             {
                 return view('search.valor')->withMessage('No se ha encontrado ningún documento.');
             }
@@ -161,14 +161,14 @@ class SearchController extends Controller
 
         if($e1 != '' and $e2 != '')
         {
-            $emproservis = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
+            $busqueda_fecha = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
             ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'asc')->get();
-            if(count($emproservis) > 0)
+            if(count($busqueda_fecha) > 0)
             {
                 $fechas = ['desde' => $e1, 'hasta' => $e2];
-                return view('search.fecha')->withDetails($emproservis)->with($fechas);
+                return view('search.fecha')->withDetails($busqueda_fecha)->with($fechas);
             }
-            elseif(count($emproservis) === 0)
+            elseif(count($busqueda_fecha) === 0)
             {
                 return view('search.fecha')->withMessage('No se ha encontrado ningún documento.');
             }
