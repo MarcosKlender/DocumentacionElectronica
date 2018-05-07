@@ -92,7 +92,7 @@ class SearchController extends Controller
         if($w != '')
         {
             $busqueda_ruc = Emproservis::where('ruc_cliente_proveedor', '=', $w)
-            ->orderBy('fecha_emision_documento', 'asc')->get();
+            ->orderBy('fecha_emision_documento', 'desc')->get();
             if(count($busqueda_ruc) > 0)
             {
                 return view('search.ruc')->withDetails($busqueda_ruc)->withQuery($w);
@@ -115,7 +115,7 @@ class SearchController extends Controller
             $busqueda_numero = Emproservis::where([
                 ['numero_documento', 'LIKE', $q.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'desc')->get();
             
             if(count($busqueda_numero) > 0)
             {
@@ -139,7 +139,7 @@ class SearchController extends Controller
             $busqueda_valor = Emproservis::where([
                 ['valor_total', 'LIKE', $x.'%'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('valor_total', 'asc')->get();
+            ])->orderBy('valor_total', 'desc')->get();
             
             if(count($busqueda_valor) > 0)
             {
@@ -162,7 +162,7 @@ class SearchController extends Controller
         if($e1 != '' and $e2 != '')
         {
             $busqueda_fecha = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
-            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'asc')->get();
+            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'desc')->get();
             if(count($busqueda_fecha) > 0)
             {
                 $fechas = ['desde' => $e1, 'hasta' => $e2];

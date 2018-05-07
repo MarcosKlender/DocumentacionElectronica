@@ -6,6 +6,7 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
+<!-- BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center my-4">
     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -18,18 +19,15 @@
       </div>
 </div>
 
-<!-- INICIO DE LA VISUALIZACIÓN DE DOCUMENTOS -->
 <div class="container mt-4">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Factura - Nota de Débito - Nota de Crédito</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="{{ route('ruta.documentos.retencion') }}">Retención</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('ruta.documentos.remision') }}">Guías de Remisión</a>
-    </li>
+
+  <!-- PESTAÑAS -->
+  <ul class="nav nav-tabs nav-justified">
+    <li class="nav-item"><a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Factura</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ route('ruta.documentos.debito') }}">Nota de Débito</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ route('ruta.documentos.credito') }}">Nota de Crédito</a></li>
+    <li class="nav-item"><a class="nav-link active" href="{{ route('ruta.documentos.retencion') }}">Retención</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ route('ruta.documentos.remision') }}">Guías de Remisión</a></li>
   </ul>
 
   @if (count($retencion) === 0)
@@ -40,6 +38,7 @@
   </div>
   @else
 
+  <!-- VISUALIZACIÓN DE DOCUMENTOS (TABLA) -->
   <table class="table table-hover table-responsive">
     <thead>
       <tr>
@@ -73,6 +72,7 @@
     </tbody>
   </table>
 
+  <!-- PAGINACIÓN -->
   <div class="pagination justify-content-center">
     {{ $retencion->links('vendor.pagination.bootstrap-4') }}
   </div>
@@ -80,4 +80,3 @@
   @endif
 </div>
 @endsection
-<!-- FIN DE LA VISUALIZACIÓN DE DOCUMENTOS -->

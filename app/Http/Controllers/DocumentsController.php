@@ -104,18 +104,34 @@ class DocumentsController extends Controller
         $factura = Emproservis::where([
                 ['id_documento', '=', 'FACTURA'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
+            ])->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+
+        return view('documents.factura', compact('factura'));
+    }
+
+    public function debito()
+    {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
         $debito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE DEBITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
+            ])->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+        
+        return view('documents.debito', compact('debito'));
+    }
+
+    public function credito()
+    {
+        $ruc_usuario = Auth::user()->ruc_o_ci;
+
         $credito = Emproservis::where([
                 ['id_documento', '=', 'NOTA DE CREDITO'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
+            ])->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
-        return view('documents.factura', compact('factura', 'debito', 'credito'));
-    }
+        return view('documents.credito', compact('credito'));
+    }    
 
     public function retencion()
     {
@@ -124,7 +140,7 @@ class DocumentsController extends Controller
         $retencion = Emproservis::where([
                 ['id_documento', '=', 'RETENCION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
+            ])->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
         return view('documents.retencion', compact('retencion'));
     }
@@ -136,7 +152,7 @@ class DocumentsController extends Controller
         $remision = Emproservis::where([
                 ['id_documento', '=', 'GUIA DE REMISION'],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->paginate(10);
+            ])->orderBy('fecha_emision_documento', 'desc')->paginate(10);
         
         return view('documents.remision', compact('remision'));
     }
@@ -147,7 +163,7 @@ class DocumentsController extends Controller
 
         $xml = Emproservis::where([
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'asc')->get();
+            ])->orderBy('fecha_emision_documento', 'desc')->get();
         return response()->view('documento', compact('xml'))->header('Content-Type', 'text/xml');
     }
 

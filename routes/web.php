@@ -21,6 +21,12 @@ Route::get('/', 'HomeController@index')
 Route::get('/home/factura', 'DocumentsController@factura')
 	->name('ruta.documentos.factura');
 
+Route::get('/home/debito', 'DocumentsController@debito')
+	->name('ruta.documentos.debito');
+
+Route::get('/home/credito', 'DocumentsController@credito')
+	->name('ruta.documentos.credito');
+
 Route::get('/home/retencion', 'DocumentsController@retencion')
 	->name('ruta.documentos.retencion');
 
