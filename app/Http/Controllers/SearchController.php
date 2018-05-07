@@ -85,14 +85,14 @@ class SearchController extends Controller
         //
     }
 
-    //BÚSQUEDA POR RUC SOLAMENTE PARA EL SUPERUSUARIO
+    /*BÚSQUEDA POR RUC SOLAMENTE PARA EL SUPERUSUARIO*/
     public function ruc()
     {
         $w = Input::get('w');
         if($w != '')
         {
-            $busqueda_ruc = Emproservis::where('ruc_cliente_proveedor', '=', $w)
-            ->orderBy('fecha_emision_documento', 'desc')->get();
+            $busqueda_ruc = Emproservis::where('ruc_cliente_proveedor', $w)
+            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
             if(count($busqueda_ruc) > 0)
             {
                 return view('search.ruc')->withDetails($busqueda_ruc)->withQuery($w);
@@ -113,7 +113,7 @@ class SearchController extends Controller
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
             $busqueda_numero = Emproservis::where([
-                ['numero_documento', 'LIKE', $q.'%'],
+                ['numero_documento', $q],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
             ])->orderBy('fecha_emision_documento', 'desc')->get();
             
@@ -137,7 +137,7 @@ class SearchController extends Controller
             $ruc_usuario = Auth::user()->ruc_o_ci;
 
             $busqueda_valor = Emproservis::where([
-                ['valor_total', 'LIKE', $x.'%'],
+                ['valor_total', $x],
                 ['ruc_cliente_proveedor', '=', $ruc_usuario],
             ])->orderBy('valor_total', 'desc')->get();
             
@@ -158,11 +158,18 @@ class SearchController extends Controller
         $e1 = Input::get('e1');
         $e2 = Input::get('e2');
         $ruc_usuario = Auth::user()->ruc_o_ci;
+ 
 
         if($e1 != '' and $e2 != '')
         {
+            if($e1 > $e2)
+            {
+                return view('search.fecha')->withMessage('La fecha ingresada es inválida.');
+            }
+
             $busqueda_fecha = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
             ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'desc')->get();
+
             if(count($busqueda_fecha) > 0)
             {
                 $fechas = ['desde' => $e1, 'hasta' => $e2];

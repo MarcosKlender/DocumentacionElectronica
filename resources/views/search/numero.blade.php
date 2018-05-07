@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('titulo')
+<title>Búsqueda Por Número de Documento</title>
+@endsection
+
 @section('tabla')
 
 <div class="container text-center my-4">

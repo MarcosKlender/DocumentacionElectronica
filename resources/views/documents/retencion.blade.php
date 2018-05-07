@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('titulo')
+<title>Guías de Retención</title>
+@endsection
+
 @section('tabla')
 
 <div class="container text-center my-4">

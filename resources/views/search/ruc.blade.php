@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('titulo')
+<title>Búsqueda Por RUC/CI</title>
+@endsection
+
 @section('tabla')
 
 <div class="container text-center my-4">
@@ -68,6 +72,11 @@
     </tbody>
   </table>
   
+  <!-- PAGINACIÓN -->
+  <div class="pagination justify-content-center">
+    {{ $details->links('vendor.pagination.bootstrap-4') }}
+  </div>
+
   @elseif(isset($message))
   <p class="container mt-4">{{ $message }}</p>
 @endif

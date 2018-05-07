@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('titulo')
+<title>Cambio De Contraseña</title>
+@endsection
+
 @section('usuario')
 <div class="container text-center mt-4">
   <h2>Perfil de Usuario</h2>

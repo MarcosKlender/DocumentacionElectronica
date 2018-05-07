@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('titulo')
+<title>Remisiones</title>
+@endsection
+
 @section('tabla')
 
 <div class="container text-center my-4">
