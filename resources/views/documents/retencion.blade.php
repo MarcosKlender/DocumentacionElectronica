@@ -10,7 +10,7 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
-<!-- BÚSQUEDA DE DOCUMENTOS -->
+<!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center my-4">
     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

@@ -10,6 +10,7 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
+<!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center my-4">
   <a class="btn btn-primary" href="{{ route('ruta.documentos.factura') }}" role="button">Regresar</a>
   <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
@@ -34,7 +35,7 @@
   </form>
 </div>
 
-<!-- INICIO DE LA BÚSQUEDA POR NÚMERO DE DOCUMENTO -->
+<!-- VISUALIZACIÓN DE DOCUMENTOS (TABLA) -->
 @if(isset($details))
 
 <div class="container mt-4">
@@ -80,4 +81,3 @@
 </div>
 
 @endsection
-<!-- FIN DE LA BÚSQUEDA POR NÚMERO DE DOCUMENTO -->

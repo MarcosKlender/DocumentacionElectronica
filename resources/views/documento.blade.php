@@ -4,9 +4,7 @@
 	<title>XML</title>
 </head>
 <body>
-	@foreach($xml as $value)
-	{{ $value-> numero_documento }}
-	{{ $value->xml_documento }}
-    @endforeach
+	{{ $xml->numero_documento }}
+	{{ $xml->xml_documento }}
 </body>
 </html>

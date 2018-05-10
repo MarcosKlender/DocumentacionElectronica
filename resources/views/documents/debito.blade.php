@@ -10,7 +10,7 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
-<!-- BÚSQUEDA DE DOCUMENTOS -->
+<!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center my-4">
     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -59,7 +59,6 @@
       </tr>
     </thead>
     <tbody>
-
       @foreach($debito as $value)
       <tr>
         <td>{{ $value->id_documento }}</td>
@@ -74,7 +73,6 @@
         <td><a href="{{ route('ruta.documentos.pdf') }}" target="_blank"><i class="far fa-file-pdf"></i></a></td>
       </tr>
       @endforeach
-
     </tbody>
   </table>
 
