@@ -5,7 +5,6 @@ namespace WebServiceApp\Http\Controllers;
 use Illuminate\Http\Request;
 use WebServiceApp\Models\Emproservis;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 
 class DocumentsController extends Controller
@@ -160,15 +159,36 @@ class DocumentsController extends Controller
     public function xml($id)
     {
         $xml = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
-        
         return response()->view('downloads.xml', compact('xml'))
             ->header('Content-Type', 'text/xml');
     }
 
-    public function pdf()
+    public function pdf($id)
     {
-        $data = ['name' => 'Marcos Klender'];
-        $pdf = PDF::loadView('documents.pdf', compact('data'));
-        return $pdf->stream('factura.pdf');
+        $pdf = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
+        $base64 = $pdf->reporte_pdf;
+        
+        $my_bytea = stream_get_contents($base64);
+        $my_string = pg_unescape_bytea($my_bytea);
+        $html_data = htmlspecialchars($my_string);
+
+        /*dd($my_bytea);*/
+
+        $decoded = base64_decode($my_bytea);
+        $file = 'invoice.pdf';
+        file_put_contents($file, $decoded);
+
+        if (file_exists($file))
+        {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            exit;
+        }
     }
 }

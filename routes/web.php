@@ -82,5 +82,5 @@ Route::put('home/usuario/cambiar', 'UserController@cambiar')
 Route::get('/home/descargar/xml/{id}', 'DocumentsController@xml')
     ->name('ruta.documentos.xml');
 
-Route::get('/home/descargar/pdf', 'DocumentsController@pdf')
+Route::get('/home/descargar/pdf/{id}', 'DocumentsController@pdf')
 	->name('ruta.documentos.pdf');
