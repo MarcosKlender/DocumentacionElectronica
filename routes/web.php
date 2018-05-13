@@ -78,8 +78,6 @@ Route::put('home/usuario/cambiar', 'UserController@cambiar')
 	->name('cambiar.usuario');
 
 //-------------------------------------------------------------------------
-/*Route::get('/home/descargar/xml', 'DocumentsController@xml')
-	->name('ruta.documentos.xml');*/
 
 Route::get('/home/descargar/xml/{id}', 'DocumentsController@xml')
     ->name('ruta.documentos.xml');

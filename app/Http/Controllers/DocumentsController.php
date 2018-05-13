@@ -159,25 +159,11 @@ class DocumentsController extends Controller
 
     public function xml($id)
     {
-        $ruc_usuario = Auth::user()->ruc_o_ci;
-
-        $xml = Emproservis::where('ruc_cliente_proveedor', $ruc_usuario)
-            ->where('numero_autorizacion', $id)
-            ->firstOrFail();
+        $xml = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
         
-        return response()->view('documento', compact('xml'))
+        return response()->view('downloads.xml', compact('xml'))
             ->header('Content-Type', 'text/xml');
     }
-
-    /*public function xml()
-    {
-        $ruc_usuario = Auth::user()->ruc_o_ci;
-
-        $xml = Emproservis::where([
-                ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'desc')->get();
-        return response()->view('documento', compact('xml'))->header('Content-Type', 'text/xml');
-    }*/
 
     public function pdf()
     {

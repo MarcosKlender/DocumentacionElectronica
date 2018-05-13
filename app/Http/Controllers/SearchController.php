@@ -168,7 +168,7 @@ class SearchController extends Controller
             }
 
             $busqueda_fecha = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
-            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'desc')->get();
+            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
             if(count($busqueda_fecha) > 0)
             {
