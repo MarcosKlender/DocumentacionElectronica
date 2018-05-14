@@ -65,12 +65,12 @@
         <td>{{ $value->id_documento }}</td>
         <td>{{ $value->persona_nombre }}</td>
         <!-- <td>{{ $value->ruc_cliente_proveedor }}</td> -->
-        <td>{{ $value->mensaje_sri }}</td>
+        <td>{{ $value->estado }}</td>
         <td>{{ $value->numero_documento }}</td>
         <!-- <td>{{ $value->valor_total }}</td> -->
         <td>{{ $value->fecha_emision_documento }}</td>
         <td>{{ $value->fecha_autorizacion }}</td>
-        <td><a href="{{ route('ruta.documentos.xml', $value->numero_autorizacion) }}" target="_blank"><i class="far fa-file-code fa-lg"></i></td>
+        <td><a href="{{ route('ruta.documentos.xml', $value->numero_autorizacion) }}"><i class="far fa-file-code fa-lg"></i></td>
         <td><a href="{{ route('ruta.documentos.pdf', $value->numero_autorizacion) }}" target="_blank"><i class="far fa-file-pdf fa-lg"></i></a></td>
       </tr>
       @endforeach

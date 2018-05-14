@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>XML</title>
+	<title>{{ $xml->numero_documento }}</title>
 </head>
 <body>
-	{{ $xml->numero_documento }}
 	{{ $xml->xml_documento }}
 </body>
 </html>

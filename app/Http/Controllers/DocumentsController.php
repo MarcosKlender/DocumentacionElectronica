@@ -158,24 +158,25 @@ class DocumentsController extends Controller
 
     public function xml($id)
     {
-        $xml = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
-        return response()->view('downloads.xml', compact('xml'))
-            ->header('Content-Type', 'text/xml');
+        $string = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
+        $xml = $string->xml_documento;
+
+        header('Content-type: text/xml');
+        header('Content-Disposition: attachment; filename="'.$string->numero_documento.'.xml"');
+        echo $xml;
+
+        /*return response()->view('downloads.xml', compact('xml'))
+            ->header('Content-Type', 'text/xml');*/
     }
 
     public function pdf($id)
     {
-        $pdf = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
-        $base64 = $pdf->reporte_pdf;
-        
-        $my_bytea = stream_get_contents($base64);
-        $my_string = pg_unescape_bytea($my_bytea);
-        $html_data = htmlspecialchars($my_string);
-
-        /*dd($my_bytea);*/
+        $base64 = Emproservis::where('numero_autorizacion', $id)->firstOrFail();
+        $pdf = $base64->reporte_pdf;        
+        $my_bytea = stream_get_contents($pdf);
 
         $decoded = base64_decode($my_bytea);
-        $file = 'invoice.pdf';
+        $file = "$base64->numero_documento.pdf";
         file_put_contents($file, $decoded);
 
         if (file_exists($file))
