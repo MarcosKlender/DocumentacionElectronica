@@ -91,8 +91,12 @@ class SearchController extends Controller
         $w = Input::get('w');
         if($w != '')
         {
-            $busqueda_ruc = Emproservis::where('ruc_cliente_proveedor', $w)
+            $busqueda_ruc = Emproservis::where([
+                ['ruc_cliente_proveedor', $w],
+                ['estado', 'AUTORIZADO']
+            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
             ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            
             if(count($busqueda_ruc) > 0)
             {
                 return view('search.ruc')->withDetails($busqueda_ruc)->withQuery($w);
@@ -114,8 +118,10 @@ class SearchController extends Controller
 
             $busqueda_numero = Emproservis::where([
                 ['numero_documento', $q],
-                ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('fecha_emision_documento', 'desc')->get();
+                ['ruc_cliente_proveedor', $ruc_usuario],
+                ['estado', 'AUTORIZADO']
+            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+            ->orderBy('fecha_emision_documento', 'desc')->get();
             
             if(count($busqueda_numero) > 0)
             {
@@ -138,8 +144,10 @@ class SearchController extends Controller
 
             $busqueda_valor = Emproservis::where([
                 ['valor_total', $x],
-                ['ruc_cliente_proveedor', '=', $ruc_usuario],
-            ])->orderBy('valor_total', 'desc')->get();
+                ['ruc_cliente_proveedor', $ruc_usuario],
+                ['estado', 'AUTORIZADO']
+            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+            ->orderBy('valor_total', 'desc')->get();
             
             if(count($busqueda_valor) > 0)
             {
@@ -168,7 +176,9 @@ class SearchController extends Controller
             }
 
             $busqueda_fecha = Emproservis::whereBetween('fecha_emision_documento', [$e1, $e2])
-            ->where('ruc_cliente_proveedor', '=', $ruc_usuario)->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            ->where([ ['ruc_cliente_proveedor', $ruc_usuario], ['estado', 'AUTORIZADO'] ])
+            ->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
             if(count($busqueda_fecha) > 0)
             {
