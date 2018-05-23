@@ -10,64 +10,25 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Crea una nueva instancia.
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Devuelve la vista del perfil de usuario.
+
     public function index()
     {
         return view('users.mostrar');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    /*
+    Las siguientes funciones manejan los cambios en la información del usuario, desde su datos personales
+    hasta el cambio de contraseña, añadiendo validaciones a cada uno de estos procesos.
+    */
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editar(User $user)
     {
         $data = request()->validate([
@@ -117,13 +78,8 @@ class UserController extends Controller
         return redirect()->route('ruta.usuario')->with('success','¡Su contraseña se ha cambiado exitosamente!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Las siguientes funciones devuelven las vistas donde se puede editar la información del usuario.
+
     public function update_one()
     {
         return view('users.editar');
@@ -132,16 +88,5 @@ class UserController extends Controller
     public function update_two()
     {
         return view('users.cambiar');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

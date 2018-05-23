@@ -77,7 +77,9 @@ Route::get('home/usuario/cambiar', 'UserController@update_two')
 Route::put('home/usuario/cambiar', 'UserController@cambiar')
 	->name('cambiar.usuario');
 
-//-------------------------------------------------------------------------
+//|--------------------------------------------------------------------------
+//| DESCARGAS
+//|--------------------------------------------------------------------------
 
 Route::get('/home/descargar/xml/{id}', 'DocumentsController@xml')
     ->name('ruta.documentos.xml');

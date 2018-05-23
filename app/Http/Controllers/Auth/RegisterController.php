@@ -14,41 +14,30 @@ class RegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | Este controlador maneja el registro de nuevos usuarios, la validación
+    | de los datos y la redirección luego de la creación del usuario.
     |
     */
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
+    // Dirección a la que se redirije luego del registro.
+
     protected function redirectTo()
     {
         $this->redirectTo = '/home/factura';
         return $this->redirectTo;
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Crea una nueva instancia.
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+    // Agrega validaciones a los campos del registro.
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -59,12 +48,8 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \WebServiceApp\User
-     */
+    // Crea un nuevo usuario luego de registrarse correctamente.
+    
     protected function create(array $data)
     {
         return User::create([

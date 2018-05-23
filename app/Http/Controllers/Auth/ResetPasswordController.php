@@ -12,29 +12,22 @@ class ResetPasswordController extends Controller
     | Password Reset Controller
     |--------------------------------------------------------------------------
     |
-    | This controller is responsible for handling password reset requests
-    | and uses a simple trait to include this behavior. You're free to
-    | explore this trait and override any methods you wish to tweak.
+    | Este controlador se encarga de manejar las peticiones de
+    | reestablecimiento de contraseñas.
     |
     */
 
     use ResetsPasswords;
 
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
+    // Dirección a la que se redirije luego de reestablecer la contraseña.
+
     protected function redirectTo()
     {
         return redirect()->guest('/home/factura');
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Crea una nueva instancia.
+
     public function __construct()
     {
         $this->middleware('guest');

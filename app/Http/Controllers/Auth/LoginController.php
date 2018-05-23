@@ -13,45 +13,36 @@ class LoginController extends Controller
     | Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
+    | Este controlador maneja la autenticación de los usuarios y los
+    | redirige a la página principal luego del inicio de sesión.
     |
     */
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+    // Dirección a la que se redirije luego del inicio de sesión.
+
     protected function redirectTo()
     {
         return redirect()->guest('/home/factura');
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Crea una nueva instancia.
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // Reemplaza el requerimiento de entrada para el login.
 
     public function username()
     {
         return 'ruc_o_ci';
     }
 
-    /**
-     * Determine if the user has too many failed login attempts.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
+    // Determina el número máximo de intentos y el tiempo de bloque del login.
+
     protected function hasTooManyLoginAttempts(Request $request)
     {
         return $this->limiter()->tooManyAttempts(
