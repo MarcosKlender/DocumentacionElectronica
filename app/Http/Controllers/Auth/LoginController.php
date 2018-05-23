@@ -4,6 +4,7 @@ namespace WebServiceApp\Http\Controllers\Auth;
 
 use WebServiceApp\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -43,5 +44,18 @@ class LoginController extends Controller
     public function username()
     {
         return 'ruc_o_ci';
+    }
+
+    /**
+     * Determine if the user has too many failed login attempts.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function hasTooManyLoginAttempts(Request $request)
+    {
+        return $this->limiter()->tooManyAttempts(
+            $this->throttleKey($request), 4, 1
+        );
     }
 }
