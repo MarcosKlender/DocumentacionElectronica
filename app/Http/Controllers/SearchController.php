@@ -9,14 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
-    // Muestra las opciones de búsqueda. (BORRAR)
-
-    public function index()
-    {
-        return view('search.opciones');
-    }
-
-
     // Esta búsqueda de documentos es exclusiva del súperusuario.
 
     public function ruc()

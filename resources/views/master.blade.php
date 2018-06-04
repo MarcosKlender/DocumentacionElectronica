@@ -44,14 +44,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Mis Documentos</a>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('ruta.busqueda') }}">Búsqueda</a>
-              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('ruta.usuario') }}">Mi Perfil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+                <a class="nav-link" href="{{ route('logout') }}" id="logout_session" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesión</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
               </li>
             </ul>

@@ -37,9 +37,6 @@ Route::get('/home/remision', 'DocumentsController@remision')
 //| BÚSQUEDA
 //|--------------------------------------------------------------------------
 
-Route::get('/home/search', 'SearchController@index')
-	->name('ruta.busqueda');
-
 Route::get('/home/search/ruc', 'SearchController@ruc')
 	->name('ruta.busqueda.ruc');
 	Route::post('/home/search/ruc', 'SearchController@ruc');

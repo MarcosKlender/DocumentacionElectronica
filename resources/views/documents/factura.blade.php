@@ -10,8 +10,84 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
+<!-- FILTRO POR EMPRESA -->
+<div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">¿Qué empresa desea buscar?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+              
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seleccione una empresa
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Empromotor</button>
+            <button class="dropdown-item" type="button">Emproservis</button>
+            <button class="dropdown-item" type="button">Superdealer</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if(Auth::check())
+<script type="text/javascript">
+$(function() {
+    $('#FilterModal').modal('show');
+});
+
+/*jQuery(document).ready(function($)
+{
+  if (sessionStorage.getItem('advertOnce') !== 'true')
+  {
+    $('#FilterModal').modal('show');
+    sessionStorage.setItem('advertOnce','true');
+  }
+
+  $('#advert-once .advert-button').on('click',function()
+  {
+    $('#advert-once').hide();
+  });
+
+  $('#logout_session').on('click',function()
+    {
+      sessionStorage.setItem('advertOnce','');
+    });
+});*/
+</script>
+@endif
+
 <!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center my-4">
+    <!-- <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span>
+        Filtrar por Empresa
+      </span>
+    </a>
+      <div class="dropdown-menu" aria-labelledby="MyDropdown" id="MyDropdown">
+        <a class="dropdown-item" href="#">Empromotor</a>
+        <a class="dropdown-item" href="#">Emproservis</a>
+        <a class="dropdown-item" href="#">SuperDealer</a>
+      </div>
+    
+    <script type="text/javascript">
+    $('#myDropdown').on('show.bs.dropdown', function ()
+    {
+      $(".btn").html('<span>Hola</span>');
+    })
+    </script> -->
+
     <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         @if(Auth::user()->admin == 1)
