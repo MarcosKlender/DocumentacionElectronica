@@ -10,7 +10,7 @@
   <h2>Documentos Electrónicos</h2>
 </div>
 
-<!-- FILTRO POR EMPRESA -->
+<!-- MODAL DE FILTRO POR EMPRESA -->
 <div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -22,32 +22,34 @@
       </div>
       <div class="modal-body text-center">
               
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Seleccione una empresa
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Empromotor</button>
-            <button class="dropdown-item" type="button">Emproservis</button>
-            <button class="dropdown-item" type="button">Superdealer</button>
+        <form method="GET" action="{{ route('ruta.documentos.factura') }}">
+          <div class="container text-center my-4">
+            <select class="custom-select" name="SelectEmpresa" id="SelectEmpresa" required="required" autofocus>
+              <option value="" disabled selected>Seleccione una empresa</option>
+              <option value="1791860829001">Empromotor</option>
+              <option value="1791410742001">Emproservis</option>
+              <option value="1791167104001">Superdealer</option>
+            </select>   
           </div>
-        </div>
-
       </div>
       <div class="modal-footer mx-auto">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+        <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
       </div>
+        </form>
+
     </div>
   </div>
 </div>
 
 @if(Auth::check())
 <script type="text/javascript">
-$(function() {
+// MUESTRA EL MODAL SIEMPRE QUE SE RECARGA LA PÁGINA
+/*$(function() {
     $('#FilterModal').modal('show');
-});
+});*/
 
-/*jQuery(document).ready(function($)
+// MUESTRA EL MODAL UNA SOLA VEZ POR SESIÓN
+jQuery(document).ready(function($)
 {
   if (sessionStorage.getItem('advertOnce') !== 'true')
   {
@@ -64,43 +66,38 @@ $(function() {
     {
       sessionStorage.setItem('advertOnce','');
     });
-});*/
+});
 </script>
 @endif
 
 <!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
-<div class="container text-center my-4">
-    <!-- <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span>
-        Filtrar por Empresa
-      </span>
-    </a>
-      <div class="dropdown-menu" aria-labelledby="MyDropdown" id="MyDropdown">
-        <a class="dropdown-item" href="#">Empromotor</a>
-        <a class="dropdown-item" href="#">Emproservis</a>
-        <a class="dropdown-item" href="#">SuperDealer</a>
-      </div>
-    
-    <script type="text/javascript">
-    $('#myDropdown').on('show.bs.dropdown', function ()
-    {
-      $(".btn").html('<span>Hola</span>');
-    })
-    </script> -->
-
-    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        @if(Auth::user()->admin == 1)
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a>
-        @endif
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
-      </div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-6 my-1">
+      <form method="GET" action="{{ route('ruta.documentos.factura') }}">
+          <select class="custom-select" name="SelectEmpresa" id="SelectEmpresa" required="required" autofocus>
+            <option value="" disabled selected>Seleccione una empresa</option>
+            <option value="1791860829001">Empromotor</option>
+            <option value="1791410742001">Emproservis</option>
+            <option value="1791167104001">Superdealer</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+      </form>
+    </div>
+    <div class="col-sm-6 my-1"> 
+      <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          @if(Auth::user()->admin == 1)
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a>
+          @endif
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
+        </div>
+   </div>
+  </div>
 </div>
-
 <div class="container mt-4">
-
   <!-- PESTAÑAS -->
   <ul class="nav nav-tabs nav-justified">
     <li class="nav-item"><a class="nav-link active" href="{{ route('ruta.documentos.factura') }}">Factura</a></li>
@@ -113,7 +110,7 @@ $(function() {
   @if (count($factura) === 0)
   <div class="card">
     <div class="card-body">
-      No se han encontrado documentos actualmente.
+      No se han encontrado documentos. Por favor, seleccione una empresa.
     </div>
   </div>
   @else
@@ -154,7 +151,7 @@ $(function() {
 
   <!-- PAGINACIÓN -->
   <div class="pagination justify-content-center">
-    {{ $factura->links('vendor.pagination.bootstrap-4') }}
+    {{ $factura->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
   </div>
 
   @endif

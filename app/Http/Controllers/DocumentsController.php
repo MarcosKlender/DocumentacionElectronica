@@ -18,18 +18,36 @@ class DocumentsController extends Controller
 
     // Las siguientes funciones se encargan de devolver las facturas del usuario.
 
-    public function factura()
+    public function factura(Request $request)
     {
+        $FiltroEmpresa = $request->get('SelectEmpresa');
         $ruc_usuario = Auth::user()->ruc_o_ci;
-
-        $factura = Emproservis::where([
-                ['id_documento', 'FACTURA'],
-                ['ruc_cliente_proveedor', $ruc_usuario],
-                ['estado', 'AUTORIZADO']
-            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
-            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
-
-        return view('documents.factura', compact('factura'));
+        
+        // Muestra los documentos filtrados por la empresa seleccionada.
+        if ($FiltroEmpresa != '')
+        {
+            $factura = Emproservis::where([
+                    ['ruc_emisor', $FiltroEmpresa],
+                    ['id_documento', 'FACTURA'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+          
+            return view('documents.factura', compact('factura'));
+        }
+        // Si no se selecciona nada, se muestran todos los documentos disponibles.
+        else
+        {
+            $factura = Emproservis::where([
+                    ['id_documento', 'FACTURA'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+          
+            return view('documents.factura', compact('factura'));
+        }
     }
 
     public function debito()
