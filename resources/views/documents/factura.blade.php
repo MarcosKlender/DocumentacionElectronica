@@ -33,7 +33,7 @@
           </div>
       </div>
       <div class="modal-footer mx-auto">
-        <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+        <button type="submit" class="btn btn-primary">Aceptar</button>
       </div>
         </form>
 
@@ -97,6 +97,7 @@ jQuery(document).ready(function($)
    </div>
   </div>
 </div>
+
 <div class="container mt-4">
   <!-- PESTAÑAS -->
   <ul class="nav nav-tabs nav-justified">
@@ -110,7 +111,7 @@ jQuery(document).ready(function($)
   @if (count($factura) === 0)
   <div class="card">
     <div class="card-body">
-      No se han encontrado documentos. Por favor, seleccione una empresa.
+      No se han encontrado documentos actualmente.
     </div>
   </div>
   @else

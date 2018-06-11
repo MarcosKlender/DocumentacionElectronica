@@ -50,60 +50,132 @@ class DocumentsController extends Controller
         }
     }
 
-    public function debito()
+    public function debito(Request $request)
     {
+        $FiltroEmpresa = $request->get('SelectEmpresa');
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $debito = Emproservis::where([
-                ['id_documento', 'NOTA DE DEBITO'],
-                ['ruc_cliente_proveedor', $ruc_usuario],
-                ['estado', 'AUTORIZADO']
-            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
-            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
-        
-        return view('documents.debito', compact('debito'));
+        // Muestra los documentos filtrados por la empresa seleccionada.
+        if ($FiltroEmpresa != '')
+        {
+            $debito = Emproservis::where([
+                    ['ruc_emisor', $FiltroEmpresa],
+                    ['id_documento', 'NOTA DE DEBITO'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            
+            return view('documents.debito', compact('debito'));
+        }
+        // Si no se selecciona nada, se muestran todos los documentos disponibles.
+        else
+        {
+            $debito = Emproservis::where([
+                    ['id_documento', 'NOTA DE DEBITO'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            
+            return view('documents.debito', compact('debito'));
+        }
     }
 
-    public function credito()
+    public function credito(Request $request)
     {
+        $FiltroEmpresa = $request->get('SelectEmpresa');
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $credito = Emproservis::where([
-                ['id_documento', 'NOTA DE CREDITO'],
-                ['ruc_cliente_proveedor', $ruc_usuario],
-                ['estado', 'AUTORIZADO']
-            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
-            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+        // Muestra los documentos filtrados por la empresa seleccionada.
+        if ($FiltroEmpresa != '')
+        {
+            $credito = Emproservis::where([
+                    ['ruc_emisor', $FiltroEmpresa],
+                    ['id_documento', 'NOTA DE CREDITO'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
-        return view('documents.credito', compact('credito'));
+            return view('documents.credito', compact('credito'));
+        }
+        // Si no se selecciona nada, se muestran todos los documentos disponibles.
+        else
+        {
+            $credito = Emproservis::where([
+                    ['id_documento', 'NOTA DE CREDITO'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+
+            return view('documents.credito', compact('credito'));
+        }
     }    
 
-    public function retencion()
+    public function retencion(Request $request)
     {
+        $FiltroEmpresa = $request->get('SelectEmpresa');
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $retencion = Emproservis::where([
-                ['id_documento', 'RETENCION'],
-                ['ruc_cliente_proveedor', $ruc_usuario],
-                ['estado', 'AUTORIZADO']
-            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
-            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+        // Muestra los documentos filtrados por la empresa seleccionada.
+        if ($FiltroEmpresa != '')
+        {
+            $retencion = Emproservis::where([
+                    ['ruc_emisor', $FiltroEmpresa],
+                    ['id_documento', 'RETENCION'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
 
-        return view('documents.retencion', compact('retencion'));
+            return view('documents.retencion', compact('retencion'));
+        }
+        // Si no se selecciona nada, se muestran todos los documentos disponibles.
+        else
+        {
+            $retencion = Emproservis::where([
+                    ['id_documento', 'RETENCION'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+
+            return view('documents.retencion', compact('retencion'));
+        }
     }
 
-    public function remision()
+    public function remision(Request $request)
     {
+        $FiltroEmpresa = $request->get('SelectEmpresa');
         $ruc_usuario = Auth::user()->ruc_o_ci;
 
-        $remision = Emproservis::where([
-                ['id_documento', 'GUIA DE REMISION'],
-                ['ruc_cliente_proveedor', $ruc_usuario],
-                ['estado', 'AUTORIZADO']
-            ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
-            ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
-        
-        return view('documents.remision', compact('remision'));
+        // Muestra los documentos filtrados por la empresa seleccionada.
+        if ($FiltroEmpresa != '')
+        {
+            $remision = Emproservis::where([
+                    ['ruc_emisor', $FiltroEmpresa],
+                    ['id_documento', 'GUIA DE REMISION'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            
+            return view('documents.remision', compact('remision'));
+        }
+        // Si no se selecciona nada, se muestran todos los documentos disponibles.
+        else
+        {
+            $remision = Emproservis::where([
+                    ['id_documento', 'GUIA DE REMISION'],
+                    ['ruc_cliente_proveedor', $ruc_usuario],
+                    ['estado', 'AUTORIZADO']
+                ])->whereNotNull('xml_documento')->whereNotNull('reporte_pdf')
+                ->orderBy('fecha_emision_documento', 'desc')->paginate(10);
+            
+            return view('documents.remision', compact('remision'));
+        }
     }
 
     public function xml($id)

@@ -11,20 +11,34 @@
 </div>
 
 <!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
-<div class="container text-center my-4">
-    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        @if(Auth::user()->admin == 1)
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a>
-        @endif
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
-        <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
-      </div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-6 my-1">
+      <form method="GET" action="{{ route('ruta.documentos.debito') }}">
+          <select class="custom-select" name="SelectEmpresa" id="SelectEmpresa" required="required" autofocus>
+            <option value="" disabled selected>Seleccione una empresa</option>
+            <option value="1791860829001">Empromotor</option>
+            <option value="1791410742001">Emproservis</option>
+            <option value="1791167104001">Superdealer</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+      </form>
+    </div>
+    <div class="col-sm-6 my-1"> 
+      <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          @if(Auth::user()->admin == 1)
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.ruc') }}">Búsqueda por número de RUC/CI</a>
+          @endif
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.numero') }}">Búsqueda por número de documento</a>
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.valor') }}">Búsqueda por valor</a>
+          <a class="dropdown-item" href="{{ route('ruta.busqueda.fecha') }}">Búsqueda por fecha de emisión</a>
+        </div>
+   </div>
+  </div>
 </div>
 
 <div class="container mt-4">
-
   <!-- PESTAÑAS -->
   <ul class="nav nav-tabs nav-justified">
     <li class="nav-item"><a class="nav-link" href="{{ route('ruta.documentos.factura') }}">Factura</a></li>
@@ -78,7 +92,7 @@
 
   <!-- PAGINACIÓN -->
   <div class="pagination justify-content-center">
-    {{ $debito->links('vendor.pagination.bootstrap-4') }}
+    {{ $debito->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
   </div>
 
   @endif
