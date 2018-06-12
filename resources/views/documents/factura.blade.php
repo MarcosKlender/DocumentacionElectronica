@@ -75,15 +75,20 @@ jQuery(document).ready(function($)
   <div class="row">
     <div class="col-sm-6 my-1">
       <form method="GET" action="{{ route('ruta.documentos.factura') }}">
+        <div class="input-group">
           <select class="custom-select" name="SelectEmpresa" id="SelectEmpresa" required="required" autofocus>
             <option value="" disabled selected>Seleccione una empresa</option>
             <option value="1791860829001">Empromotor</option>
             <option value="1791410742001">Emproservis</option>
             <option value="1791167104001">Superdealer</option>
           </select>
-          <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Aplicar Filtro</button>
+          </div>
+        </div>
       </form>
     </div>
+    
     <div class="col-sm-6 my-1"> 
       <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
