@@ -16,7 +16,7 @@ class DocumentsController extends Controller
         $this->middleware('auth');
     }
 
-    // Las siguientes funciones se encargan de devolver las facturas del usuario.
+    // Las siguientes funciones se encargan de devolver los documentos electrónicos del usuario.
 
     public function factura(Request $request)
     {
@@ -202,5 +202,10 @@ class DocumentsController extends Controller
         file_put_contents($file, $decoded);
 
         return response()->file($file)->deleteFileAfterSend(true);
+    }
+
+    public function reporte()
+    {
+        return view('documents.reporte');
     }
 }

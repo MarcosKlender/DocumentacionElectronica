@@ -13,7 +13,7 @@
 <!-- OPCIONES DE BÚSQUEDA DE DOCUMENTOS -->
 <div class="container text-center">
   <div class="row">
-    <div class="col-sm-6 my-1">
+    <div class="col-sm-5 my-1 mx-auto">
       <form method="GET" action="{{ route('ruta.documentos.credito') }}">
         <div class="input-group">
           <select class="custom-select" name="SelectEmpresa" id="SelectEmpresa" required="required" autofocus>
@@ -29,7 +29,7 @@
       </form>
     </div>
     
-    <div class="col-sm-6 my-1"> 
+    <div class="col-sm-5 my-1"> 
       <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Búsqueda de documentos</a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           @if(Auth::user()->admin == 1)

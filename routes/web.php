@@ -83,3 +83,9 @@ Route::get('/home/descargar/xml/{id}', 'DocumentsController@xml')
 
 Route::get('/home/descargar/pdf/{id}', 'DocumentsController@pdf')
 	->name('ruta.documentos.pdf');
+
+//|--------------------------------------------------------------------------
+//| REPORTE
+//|--------------------------------------------------------------------------
+Route::get('home/reporte', 'DocumentsController@reporte')
+	->name('ruta.reporte');
