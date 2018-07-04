@@ -44,9 +44,8 @@
                     <label for="email">Correo Electrónico</label>
                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" value="{{ Auth::user()->email }}">
                 </div>
-                <div class="form-group">
-                    <label for="ruc_o_ci">RUC o CI</label>
-                    <input type="text" class="form-control" name="ruc_o_ci" id="ruc_o_ci" value="{{ Auth::user()->ruc_o_ci }}">
+                <div class="form-group mb-4">
+                    <input type="hidden" class="form-control" name="ruc_o_ci" id="ruc_o_ci">
                     <input type="hidden" class="form-control" name="password" id="password">
                 </div>
                 <div class="d-flex justify-content-between">

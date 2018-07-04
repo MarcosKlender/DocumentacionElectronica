@@ -33,18 +33,18 @@ class UserController extends Controller
     {
         $data = request()->validate([
             'name' => 'required|string|max:255',
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'ruc_o_ci' => ['required', 'digits_between:10,13', Rule::unique('users')->ignore($user->id)],
+            'email' => 'required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id),
+            'ruc_o_ci' => '',
             'password' => ''
         ]);
 
-        if ($data['password'] != null)
+        if ($data['ruc_o_ci'] != null)
         {
-            unset($data['password']);
+            unset($data['ruc_o_ci'], $data['password']);
         }
         else
         {
-            unset($data['password']);
+            unset($data['ruc_o_ci'], $data['password']);
         }
 
         Auth::user()->update($data);
