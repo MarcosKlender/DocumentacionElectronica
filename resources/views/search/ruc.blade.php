@@ -21,6 +21,7 @@
   </div>
 </div>
 
+@if(Auth::user()->admin == 1)
 <div class="container">
   <form action="{{ route('ruta.busqueda.ruc') }}" method="POST" role="search">
     {{ csrf_field() }}
@@ -32,6 +33,7 @@
     </div>
   </form>
 </div>
+@endif
 
 <!-- VISUALIZACIÓN DE DOCUMENTOS (TABLA) -->
 @if(isset($details))

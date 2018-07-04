@@ -12,13 +12,15 @@ class DatabaseSeeder extends Seeder
 
         foreach ($Emproservis as $client)
         {
-            User::firstOrCreate
-            ([
-                'name' => $client->persona_nombre,
-                'email' => str_random(10),
-                'ruc_o_ci' => $client->ruc_cliente_proveedor,
-                'password' => bcrypt($client->ruc_cliente_proveedor)
-            ]);
+            User::firstOrCreate(
+                [
+                    'ruc_o_ci' => $client->ruc_cliente_proveedor
+                ],
+                [
+                    'name' => $client->persona_nombre,
+                    'email' => str_random(20),
+                    'password' => bcrypt($client->ruc_cliente_proveedor)
+                ]);
         }
     }
 }

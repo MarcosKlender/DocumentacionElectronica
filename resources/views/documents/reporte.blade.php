@@ -6,6 +6,7 @@
 
 @section('tabla')
 
+@if(Auth::user()->admin == 1)
 <div class="container text-center my-4">
   <h2>Reporte de Documentos</h2>
 </div>
@@ -49,7 +50,7 @@
       }
   });
   </script>
-
 </div>
+@endif
 
 @endsection
