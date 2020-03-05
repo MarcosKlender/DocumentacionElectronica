@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/apm/l/vim-mode.svg)](https://opensource.org/licenses/MIT) ![Development](https://img.shields.io/badge/development-done-green.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT) ![Development](https://img.shields.io/badge/development-done-green.svg)
 # Electronic Documentation
 Web service para el control de documentos electrónicos de una empresa.
 
